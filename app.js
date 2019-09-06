@@ -7,9 +7,26 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/employee')
-  .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+
+//local database connection
+
+// mongoose.connect('mongodb://localhost/employee')
+//   .then(() =>  console.log('connection succesful'))
+//   .catch((err) => console.error(err));
+
+const options = {
+  useNewUrlParser: true,
+};
+const uri = 'mongodb+srv://abcd:abcd@kanhaiya-amndo.mongodb.net/employee?retryWrites=true&w=majority'
+
+mongoose.connect(uri, options).then(
+  () => {
+    console.log("online mongo atlas database connected");
+  },
+  err => {
+    console.log("Error", err)
+  }
+);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -34,14 +51,14 @@ app.use('/users', users);
 app.use('/employees', employees);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
