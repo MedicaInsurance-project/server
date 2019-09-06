@@ -16,8 +16,9 @@ npm start
 
 - **TEAM MEMBERS**
 ``` 
-[Kanhaiya Kumar](https://www.linkedin.com/in/kanhaiya-kumar-73a150a8/)
+ 
+Kanhaiya Kumar 
 Akshita Panchal
 Harsh Khare
 
-```
+``` 
